@@ -28,6 +28,13 @@
       --accent-light: #7a9c85;
       --accent-muted: rgba(90, 124, 101, 0.15);
 
+      --gold: #d4a84b;
+      --gold-light: #f0d78a;
+      --gold-muted: rgba(212, 168, 75, 0.15);
+
+      --platinum: #6b7280;
+      --platinum-light: #9ca3af;
+
       --cream: #faf7f2;
       --cream-dark: #f0ebe3;
       --white: #ffffff;
@@ -267,32 +274,82 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
 
-    .btn--ghost {
-      background: transparent;
+    .btn--gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
       color: var(--text-primary);
-      padding: var(--space-sm) var(--space-md);
+      box-shadow: 0 2px 8px rgba(212, 168, 75, 0.4);
     }
 
-    .btn--ghost:hover {
-      color: var(--primary);
+    .btn--gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(212, 168, 75, 0.5);
+    }
+
+    .btn--lg {
+      padding: var(--space-lg) var(--space-2xl);
+      font-size: 1rem;
+    }
+
+    .btn--full {
+      width: 100%;
     }
 
     /* ═══════════════════════════════════════════════════════════════
-       COMPONENTS - Cards
+       COMPONENTS - Forms
        ═══════════════════════════════════════════════════════════════ */
 
-    .card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border);
-      transition: all var(--duration-normal) var(--ease-out);
+    .form-group {
+      margin-bottom: var(--space-lg);
     }
 
-    .card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: var(--space-md);
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text-primary);
+      background: var(--white);
+      border: 2px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      transition: all var(--duration-fast);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-muted);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--space-md) center;
+      background-size: 20px;
+      padding-right: calc(var(--space-md) * 2 + 20px);
+    }
+
+    .form-hint {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      margin-top: var(--space-xs);
     }
 
     /* ═══════════════════════════════════════════════════════════════
@@ -393,7 +450,7 @@
       background: rgba(255,255,255,0.15);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .nav__links {
         display: none;
       }
@@ -448,7 +505,7 @@
       display: block;
       padding: var(--space-md) 0;
       font-family: var(--font-display);
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       color: var(--text-primary);
       border-bottom: 1px solid var(--border);
       transition: color var(--duration-fast);
@@ -592,132 +649,58 @@
     }
 
     /* ═══════════════════════════════════════════════════════════════
-       IMAGE GALLERY SECTION
+       SERVICES OVERVIEW SECTION
        ═══════════════════════════════════════════════════════════════ */
 
-    .gallery {
-      padding: var(--space-4xl) 0;
+    .services-overview {
       background: var(--white);
-      overflow: hidden;
-    }
-
-    .gallery__header {
-      text-align: center;
-      margin-bottom: var(--space-2xl);
-    }
-
-    .gallery__label {
-      color: var(--primary);
-      margin-bottom: var(--space-sm);
-    }
-
-    .gallery__title {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .gallery__track {
-      display: flex;
-      gap: var(--space-md);
-      animation: scroll 40s linear infinite;
-      width: max-content;
-    }
-
-    .gallery__track:hover {
-      animation-play-state: paused;
-    }
-
-    .gallery__item {
-      flex-shrink: 0;
-      width: 300px;
-      height: 200px;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      transition: transform var(--duration-normal) var(--ease-out);
-    }
-
-    .gallery__item:hover {
-      transform: scale(1.05);
-    }
-
-    .gallery__item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform var(--duration-slow) var(--ease-out);
-    }
-
-    .gallery__item:hover img {
-      transform: scale(1.1);
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ═══════════════════════════════════════════════════════════════
-       FEATURES SECTION
-       ═══════════════════════════════════════════════════════════════ */
-
-    .features {
-      background: var(--cream);
       position: relative;
     }
 
-    .features__header {
+    .services-overview__header {
       text-align: center;
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto var(--space-3xl);
     }
 
-    .features__label {
+    .services-overview__label {
       color: var(--primary);
       margin-bottom: var(--space-md);
     }
 
-    .features__title {
+    .services-overview__title {
       margin-bottom: var(--space-md);
     }
 
-    .features__subtitle {
+    .services-overview__subtitle {
       color: var(--text-secondary);
       font-size: 1.125rem;
     }
 
-    .features__grid {
+    .services-overview__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-xl);
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
     }
 
-    .feature-card {
-      padding: 0;
-      border-radius: var(--radius-xl);
-      background: var(--white);
-      border: 1px solid var(--border);
-      overflow: hidden;
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--cream);
+      border-radius: var(--radius-lg);
       transition: all var(--duration-normal) var(--ease-out);
     }
 
-    .feature-card:hover {
-      border-color: transparent;
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-8px);
+    .service-item:hover {
+      background: var(--white);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
     }
 
-    .feature-card__image {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-
-    .feature-card__content {
-      padding: var(--space-xl);
-    }
-
-    .feature-card__icon {
+    .service-item__icon {
+      flex-shrink: 0;
       width: 48px;
       height: 48px;
       background: var(--primary-muted);
@@ -726,157 +709,444 @@
       align-items: center;
       justify-content: center;
       color: var(--primary);
-      font-size: 1.25rem;
-      margin-bottom: var(--space-md);
-      margin-top: calc(-48px - var(--space-md));
-      position: relative;
-      box-shadow: var(--shadow-md);
-      border: 3px solid var(--white);
+      transition: all var(--duration-normal);
     }
 
-    .feature-card:hover .feature-card__icon {
+    .service-item:hover .service-item__icon {
       background: var(--primary);
       color: white;
     }
 
-    .feature-card__title {
-      font-size: 1.25rem;
-      margin-bottom: var(--space-sm);
-    }
-
-    .feature-card__description {
-      color: var(--text-secondary);
-      font-size: 0.9375rem;
-    }
-
-    /* ═══════════════════════════════════════════════════════════════
-       VALUE PROPOSITION
-       ═══════════════════════════════════════════════════════════════ */
-
-    .value-prop {
-      position: relative;
-      overflow: hidden;
-      background: var(--white);
-    }
-
-    .value-prop__inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-3xl);
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .value-prop__inner {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .value-prop__content {
-      max-width: 500px;
-    }
-
-    .value-prop__label {
-      color: var(--accent);
-      margin-bottom: var(--space-md);
-    }
-
-    .value-prop__title {
-      margin-bottom: var(--space-lg);
-    }
-
-    .value-prop__description {
-      color: var(--text-secondary);
-      font-size: 1.125rem;
-      margin-bottom: var(--space-2xl);
-    }
-
-    .value-prop__visual {
-      position: relative;
-    }
-
-    .value-prop__image-stack {
-      position: relative;
-      height: 400px;
-    }
-
-    .value-prop__image {
-      position: absolute;
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-xl);
-      overflow: hidden;
-    }
-
-    .value-prop__image--main {
-      width: 85%;
-      height: 320px;
-      top: 0;
-      right: 0;
-      z-index: 1;
-    }
-
-    .value-prop__image--accent {
-      width: 55%;
-      height: 200px;
-      bottom: 0;
-      left: 0;
-      z-index: 2;
-      border: 4px solid var(--white);
-    }
-
-    .value-prop__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .value-prop__card {
-      position: absolute;
-      bottom: var(--space-xl);
-      right: var(--space-xl);
-      background: var(--white);
-      padding: var(--space-lg);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      z-index: 3;
-      max-width: 220px;
-    }
-
-    .value-prop__card-stat {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
+    .service-item__content h3 {
+      font-family: var(--font-body);
+      font-size: 1rem;
       font-weight: 600;
-      color: var(--primary);
-      line-height: 1;
       margin-bottom: var(--space-xs);
     }
 
-    .value-prop__card-label {
+    .service-item__content p {
       font-size: 0.875rem;
       color: var(--text-secondary);
     }
 
-    @media (max-width: 768px) {
-      .value-prop__image-stack {
-        height: 300px;
-      }
+    /* ═══════════════════════════════════════════════════════════════
+       PRICING SECTION
+       ═══════════════════════════════════════════════════════════════ */
 
-      .value-prop__image--main {
-        width: 100%;
-        height: 240px;
-        position: relative;
-      }
+    .pricing {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+      position: relative;
+    }
 
-      .value-prop__image--accent {
-        display: none;
-      }
+    .pricing__header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto var(--space-xl);
+    }
 
-      .value-prop__card {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        margin-top: var(--space-lg);
-        max-width: 100%;
+    .pricing__label {
+      color: var(--primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .pricing__title {
+      margin-bottom: var(--space-md);
+    }
+
+    .pricing__subtitle {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+    }
+
+    .pricing__toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-3xl);
+    }
+
+    .pricing__toggle-label {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color var(--duration-fast);
+    }
+
+    .pricing__toggle-label--active {
+      color: var(--text-primary);
+    }
+
+    .pricing__toggle-switch {
+      position: relative;
+      width: 56px;
+      height: 32px;
+      background: var(--border-strong);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: background var(--duration-fast);
+    }
+
+    .pricing__toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 24px;
+      height: 24px;
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--duration-normal) var(--ease-out);
+    }
+
+    .pricing__toggle-switch--yearly::after {
+      transform: translateX(24px);
+    }
+
+    .pricing__toggle-switch--yearly {
+      background: var(--primary);
+    }
+
+    .pricing__save {
+      background: var(--accent-muted);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .pricing__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-xl);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      border: 2px solid var(--border);
+      transition: all var(--duration-normal) var(--ease-out);
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      border-color: var(--primary-muted);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+    }
+
+    .pricing-card--featured {
+      border-color: var(--gold);
+      background: linear-gradient(180deg, var(--gold-muted) 0%, var(--white) 30%);
+    }
+
+    .pricing-card--featured:hover {
+      border-color: var(--gold);
+    }
+
+    .pricing-card__badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: var(--text-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-card__name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .pricing-card__description {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .pricing-card__price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-xs);
+    }
+
+    .pricing-card__amount {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .pricing-card__period {
+      font-size: 0.9375rem;
+      color: var(--text-tertiary);
+    }
+
+    .pricing-card__yearly {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .pricing-card__features {
+      list-style: none;
+      margin-bottom: var(--space-xl);
+    }
+
+    .pricing-card__feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+    }
+
+    .pricing-card__feature-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .pricing-card__feature--highlight {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       GUIDE SECTION
+       ═══════════════════════════════════════════════════════════════ */
+
+    .guide {
+      background: var(--white);
+    }
+
+    .guide__header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto var(--space-3xl);
+    }
+
+    .guide__label {
+      color: var(--accent);
+      margin-bottom: var(--space-md);
+    }
+
+    .guide__title {
+      margin-bottom: var(--space-md);
+    }
+
+    .guide__subtitle {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+    }
+
+    .guide__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .guide-card {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .guide-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .guide-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-lg);
+      cursor: pointer;
+      transition: background var(--duration-fast);
+    }
+
+    .guide-card__header:hover {
+      background: var(--cream-dark);
+    }
+
+    .guide-card__header-content {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .guide-card__icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-muted);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: all var(--duration-normal);
+    }
+
+    .guide-card--open .guide-card__icon {
+      background: var(--primary);
+      color: white;
+    }
+
+    .guide-card__title {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .guide-card__toggle {
+      width: 24px;
+      height: 24px;
+      color: var(--text-tertiary);
+      transition: transform var(--duration-normal);
+    }
+
+    .guide-card--open .guide-card__toggle {
+      transform: rotate(180deg);
+    }
+
+    .guide-card__content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--duration-normal) var(--ease-out);
+    }
+
+    .guide-card--open .guide-card__content {
+      max-height: 500px;
+    }
+
+    .guide-card__body {
+      padding: 0 var(--space-lg) var(--space-lg);
+    }
+
+    .guide-card__text {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-md);
+    }
+
+    .guide-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+      transition: gap var(--duration-fast);
+    }
+
+    .guide-card__link:hover {
+      gap: var(--space-md);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       REQUEST FORM SECTION
+       ═══════════════════════════════════════════════════════════════ */
+
+    .request {
+      background: var(--cream);
+      position: relative;
+    }
+
+    .request__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .request__inner {
+        grid-template-columns: 1fr 1.2fr;
+      }
+    }
+
+    .request__content {
+      max-width: 450px;
+    }
+
+    .request__label {
+      color: var(--primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .request__title {
+      margin-bottom: var(--space-lg);
+    }
+
+    .request__description {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      margin-bottom: var(--space-xl);
+    }
+
+    .request__benefits {
+      list-style: none;
+    }
+
+    .request__benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+    }
+
+    .request__benefit-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
+    }
+
+    .request__benefit-text {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+    }
+
+    .request__form-wrapper {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .request__form-title {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-xl);
+    }
+
+    .request__form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    @media (max-width: 600px) {
+      .request__form-row {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -885,18 +1155,8 @@
        ═══════════════════════════════════════════════════════════════ */
 
     .benefits {
-      background: var(--cream);
+      background: var(--white);
       position: relative;
-    }
-
-    .benefits::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
     }
 
     .benefits__inner {
@@ -939,7 +1199,7 @@
       display: flex;
       gap: var(--space-md);
       padding: var(--space-lg);
-      background: var(--white);
+      background: var(--cream);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       transition: all var(--duration-normal) var(--ease-out);
@@ -981,174 +1241,6 @@
     .benefit-item__content p {
       color: var(--text-secondary);
       font-size: 0.9375rem;
-    }
-
-    /* ═══════════════════════════════════════════════════════════════
-       LIFESTYLE SECTION
-       ═══════════════════════════════════════════════════════════════ */
-
-    .lifestyle {
-      padding: 0;
-      position: relative;
-    }
-
-    .lifestyle__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      min-height: 500px;
-    }
-
-    @media (max-width: 768px) {
-      .lifestyle__grid {
-        grid-template-columns: repeat(2, 1fr);
-        min-height: 400px;
-      }
-    }
-
-    .lifestyle__item {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lifestyle__item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform var(--duration-slow) var(--ease-out);
-    }
-
-    .lifestyle__item:hover img {
-      transform: scale(1.1);
-    }
-
-    .lifestyle__item--featured {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-    .lifestyle__overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26,26,26,0.8) 0%, transparent 60%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: var(--space-xl);
-      opacity: 0;
-      transition: opacity var(--duration-normal);
-    }
-
-    .lifestyle__item:hover .lifestyle__overlay {
-      opacity: 1;
-    }
-
-    .lifestyle__item--featured .lifestyle__overlay {
-      opacity: 1;
-    }
-
-    .lifestyle__caption {
-      color: var(--text-inverse);
-    }
-
-    .lifestyle__caption h3 {
-      font-size: 1.25rem;
-      margin-bottom: var(--space-xs);
-    }
-
-    .lifestyle__caption p {
-      font-size: 0.875rem;
-      opacity: 0.8;
-    }
-
-    .lifestyle__item--featured .lifestyle__caption h3 {
-      font-size: 2rem;
-    }
-
-    /* ═══════════════════════════════════════════════════════════════
-       SERVICES SECTION
-       ═══════════════════════════════════════════════════════════════ */
-
-    .services {
-      position: relative;
-      background: var(--white);
-    }
-
-    .services__header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto var(--space-3xl);
-    }
-
-    .services__label {
-      color: var(--primary);
-      margin-bottom: var(--space-md);
-    }
-
-    .services__title {
-      margin-bottom: var(--space-md);
-    }
-
-    .services__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-    }
-
-    @media (min-width: 768px) {
-      .services__grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .service-card {
-      display: flex;
-      flex-direction: column;
-      background: var(--cream);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      transition: all var(--duration-normal) var(--ease-out);
-    }
-
-    .service-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-8px);
-    }
-
-    .service-card__image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .service-card__content {
-      padding: var(--space-xl);
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .service-card__title {
-      font-size: 1.5rem;
-      margin-bottom: var(--space-sm);
-    }
-
-    .service-card__description {
-      color: var(--text-secondary);
-      margin-bottom: var(--space-xl);
-      flex-grow: 1;
-    }
-
-    .service-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      font-weight: 600;
-      color: var(--primary);
-      transition: gap var(--duration-fast);
-    }
-
-    .service-card__link:hover {
-      gap: var(--space-md);
     }
 
     /* ═══════════════════════════════════════════════════════════════
@@ -1370,27 +1462,11 @@
       }
     }
 
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(24px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    /* Scroll-triggered animations */
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(32px);
@@ -1409,11 +1485,6 @@
     /* ═══════════════════════════════════════════════════════════════
        UTILITIES
        ═══════════════════════════════════════════════════════════════ */
-
-    .text-center { text-align: center; }
-    .text-primary { color: var(--primary); }
-    .text-accent { color: var(--accent); }
-    .text-muted { color: var(--text-secondary); }
 
     .sr-only {
       position: absolute;
@@ -1434,19 +1505,21 @@
   <nav class="nav" id="nav">
     <div class="container">
       <div class="nav__inner">
-        <a href="/" class="nav__logo">
+        <a href="#" class="nav__logo">
           <img src="https://expatly360.com/icon.png" alt="Expatly360" class="nav__logo-img">
           Expatly360
         </a>
 
         <ul class="nav__links">
-          <li><a href="#features" class="nav__link">Services</a></li>
-          <li><a href="#about" class="nav__link">About</a></li>
+          <li><a href="#services" class="nav__link">Services</a></li>
+          <li><a href="#pricing" class="nav__link">Pricing</a></li>
+          <li><a href="#guide" class="nav__link">Guide</a></li>
           <li><a href="#benefits" class="nav__link">Why Us</a></li>
+          <li><a href="#request" class="nav__link">Request Service</a></li>
           <li><a href="#contact" class="nav__link">Contact</a></li>
         </ul>
 
-        <a href="/services/request" class="btn btn--primary nav__cta">Get Started</a>
+        <a href="#pricing" class="btn btn--primary nav__cta">View Plans</a>
 
         <button class="nav__mobile-toggle" id="mobileToggle" aria-label="Open menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1468,12 +1541,14 @@
       </svg>
     </button>
     <ul class="mobile-menu__links">
-      <li><a href="#features" class="mobile-menu__link">Services</a></li>
-      <li><a href="#about" class="mobile-menu__link">About</a></li>
+      <li><a href="#services" class="mobile-menu__link">Services</a></li>
+      <li><a href="#pricing" class="mobile-menu__link">Pricing</a></li>
+      <li><a href="#guide" class="mobile-menu__link">Guide</a></li>
       <li><a href="#benefits" class="mobile-menu__link">Why Us</a></li>
+      <li><a href="#request" class="mobile-menu__link">Request Service</a></li>
       <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
     </ul>
-    <a href="/services/request" class="btn btn--primary mobile-menu__cta">Get Started</a>
+    <a href="#pricing" class="btn btn--primary mobile-menu__cta">View Plans</a>
   </div>
 
   <!-- Hero Section -->
@@ -1507,14 +1582,14 @@
         </p>
 
         <div class="hero__actions">
-          <a href="/services/request" class="btn btn--primary">
-            Get Started
+          <a href="#pricing" class="btn btn--primary">
+            View Plans
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-          <a href="#about" class="btn btn--white">Learn More</a>
+          <a href="#request" class="btn btn--white">Request Service</a>
         </div>
       </div>
     </div>
@@ -1525,159 +1600,399 @@
     </div>
   </section>
 
-  <!-- Image Gallery -->
-  <section class="gallery">
+  <!-- Services Overview -->
+  <section class="services-overview" id="services">
     <div class="container">
-      <div class="gallery__header animate-on-scroll">
-        <p class="label gallery__label">Discover Spain</p>
-        <h2 class="heading-lg gallery__title">Experience the beauty that awaits you</h2>
+      <div class="services-overview__header animate-on-scroll">
+        <p class="label services-overview__label">Our Services</p>
+        <h2 class="display-lg services-overview__title">Everything you need to settle in Spain</h2>
+        <p class="services-overview__subtitle">Comprehensive support for every aspect of your relocation journey, from visas to daily life.</p>
       </div>
-    </div>
-    <div class="gallery__track">
-      <div class="gallery__item"><img src="https://expatly360.com/image1.jpeg" alt="Spain lifestyle" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image2.jpeg" alt="Spanish culture" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image3.jpeg" alt="Mediterranean coast" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image4.jpeg" alt="Spanish architecture" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image5.jpeg" alt="Life in Spain" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image6.jpeg" alt="Spanish scenery" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image7.jpeg" alt="Expat experience" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image8.jpeg" alt="Spanish lifestyle" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image9.jpeg" alt="Beautiful Spain" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image10.jpeg" alt="Mediterranean life" loading="lazy"></div>
-      <!-- Duplicate for seamless loop -->
-      <div class="gallery__item"><img src="https://expatly360.com/image1.jpeg" alt="Spain lifestyle" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image2.jpeg" alt="Spanish culture" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image3.jpeg" alt="Mediterranean coast" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image4.jpeg" alt="Spanish architecture" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image5.jpeg" alt="Life in Spain" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image6.jpeg" alt="Spanish scenery" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image7.jpeg" alt="Expat experience" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image8.jpeg" alt="Spanish lifestyle" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image9.jpeg" alt="Beautiful Spain" loading="lazy"></div>
-      <div class="gallery__item"><img src="https://expatly360.com/image10.jpeg" alt="Mediterranean life" loading="lazy"></div>
+
+      <div class="services-overview__grid">
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>NIE Application</h3>
+            <p>Your essential ID number for all official transactions in Spain</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>VISA Applications</h3>
+            <p>Student, work, non-lucrative visas and more</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>Spanish Residency</h3>
+            <p>EU and non-EU residency permit assistance</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>TIE Card</h3>
+            <p>Biometric identity card for non-EU residents</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>Spanish Nationality</h3>
+            <p>Citizenship application and exam preparation</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>Padrón Registration</h3>
+            <p>Municipal registration at your local town hall</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>Bank Account</h3>
+            <p>Open Spanish bank accounts hassle-free</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>Insurance</h3>
+            <p>Health, home, and vehicle insurance setup</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>Utilities Setup</h3>
+            <p>Electricity, water, internet connections</p>
+          </div>
+        </div>
+
+        <div class="service-item animate-on-scroll">
+          <div class="service-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+          </div>
+          <div class="service-item__content">
+            <h3>Vehicle Registration</h3>
+            <p>Import, transfer, and register vehicles</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features" id="features">
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
     <div class="container">
-      <div class="features__header animate-on-scroll">
-        <p class="label features__label">Our Services</p>
-        <h2 class="display-lg features__title">Everything you need to settle in Spain</h2>
-        <p class="features__subtitle">Comprehensive support for every aspect of your relocation journey</p>
+      <div class="pricing__header animate-on-scroll">
+        <p class="label pricing__label">Subscription Plans</p>
+        <h2 class="display-lg pricing__title">Choose the plan that fits your needs</h2>
+        <p class="pricing__subtitle">Flexible options with included support hours and exclusive discounts on all services.</p>
       </div>
 
-      <div class="features__grid">
-        <div class="feature-card animate-on-scroll">
-          <img
-            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80"
-            alt="Documents and paperwork"
-            class="feature-card__image"
-            loading="lazy"
-          >
-          <div class="feature-card__content">
-            <div class="feature-card__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-              </svg>
-            </div>
-            <h3 class="feature-card__title">Visa & Documentation</h3>
-            <p class="feature-card__description">Expert guidance through visa applications, NIE numbers, residency permits, and all essential paperwork.</p>
+      <div class="pricing__toggle animate-on-scroll">
+        <span class="pricing__toggle-label pricing__toggle-label--active" id="monthlyLabel">Monthly</span>
+        <div class="pricing__toggle-switch" id="billingToggle" role="button" aria-label="Toggle billing period"></div>
+        <span class="pricing__toggle-label" id="yearlyLabel">Yearly</span>
+        <span class="pricing__save">Save 5%</span>
+      </div>
+
+      <div class="pricing__grid">
+        <!-- Free Plan -->
+        <div class="pricing-card animate-on-scroll">
+          <h3 class="pricing-card__name">Free</h3>
+          <p class="pricing-card__description">Get started with pay-as-you-go services</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">€0</span>
+            <span class="pricing-card__period">/month</span>
           </div>
+          <p class="pricing-card__yearly">&nbsp;</p>
+          <ul class="pricing-card__features">
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>0 included hours/month</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>€75/hour (IVA incl.) for services</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Workday support (9-18h)</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>1 simultaneous service request</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>15 min consultation time</span>
+            </li>
+          </ul>
+          <a href="#request" class="btn btn--secondary btn--full">Get Started</a>
         </div>
 
-        <div class="feature-card animate-on-scroll">
-          <img
-            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80"
-            alt="Beautiful Spanish apartment interior"
-            class="feature-card__image"
-            loading="lazy"
-          >
-          <div class="feature-card__content">
-            <div class="feature-card__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-            </div>
-            <h3 class="feature-card__title">Housing Support</h3>
-            <p class="feature-card__description">Find your perfect home with our network of trusted agents and local housing expertise.</p>
+        <!-- Gold Plan -->
+        <div class="pricing-card pricing-card--featured animate-on-scroll">
+          <div class="pricing-card__badge">Most Popular</div>
+          <h3 class="pricing-card__name">Gold</h3>
+          <p class="pricing-card__description">Perfect for active expats settling in Spain</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount" data-monthly="65" data-yearly="63">€65</span>
+            <span class="pricing-card__period">/month</span>
           </div>
+          <p class="pricing-card__yearly" data-yearly="€757/year (€63.08/mo)">or €757/year</p>
+          <ul class="pricing-card__features">
+            <li class="pricing-card__feature pricing-card__feature--highlight">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>1 hour included/month</span>
+            </li>
+            <li class="pricing-card__feature pricing-card__feature--highlight">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>€55/hour (IVA incl.) additional</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Full week support (9-18h)</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>5 simultaneous service requests</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>2 hours consultation time</span>
+            </li>
+            <li class="pricing-card__feature pricing-card__feature--highlight">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>5% discount on all services</span>
+            </li>
+          </ul>
+          <a href="#request" class="btn btn--gold btn--full">Choose Gold</a>
         </div>
 
-        <div class="feature-card animate-on-scroll">
-          <img
-            src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=80"
-            alt="Banking and finance"
-            class="feature-card__image"
-            loading="lazy"
-          >
-          <div class="feature-card__content">
-            <div class="feature-card__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                <line x1="1" y1="10" x2="23" y2="10"></line>
-              </svg>
-            </div>
-            <h3 class="feature-card__title">Banking & Finance</h3>
-            <p class="feature-card__description">Set up Spanish bank accounts, understand taxes, and manage your finances smoothly.</p>
+        <!-- Platinum Plan -->
+        <div class="pricing-card animate-on-scroll">
+          <h3 class="pricing-card__name">Platinum</h3>
+          <p class="pricing-card__description">Complete support for a seamless transition</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount" data-monthly="170" data-yearly="162">€170</span>
+            <span class="pricing-card__period">/month</span>
           </div>
-        </div>
-
-        <div class="feature-card animate-on-scroll">
-          <img
-            src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&q=80"
-            alt="Healthcare and medical"
-            class="feature-card__image"
-            loading="lazy"
-          >
-          <div class="feature-card__content">
-            <div class="feature-card__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-              </svg>
-            </div>
-            <h3 class="feature-card__title">Healthcare Setup</h3>
-            <p class="feature-card__description">Navigate the Spanish healthcare system and get registered with doctors and specialists.</p>
-          </div>
+          <p class="pricing-card__yearly" data-yearly="€1,938/year (€161.50/mo)">or €1,938/year</p>
+          <ul class="pricing-card__features">
+            <li class="pricing-card__feature pricing-card__feature--highlight">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>4 hours included/month</span>
+            </li>
+            <li class="pricing-card__feature pricing-card__feature--highlight">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>€42.50/hour (IVA incl.) additional</span>
+            </li>
+            <li class="pricing-card__feature pricing-card__feature--highlight">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>24/7 Premium Support</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Unlimited service requests</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>8 hours consultation time</span>
+            </li>
+            <li class="pricing-card__feature pricing-card__feature--highlight">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>10% discount on all services</span>
+            </li>
+            <li class="pricing-card__feature">
+              <svg class="pricing-card__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>6 languages supported</span>
+            </li>
+          </ul>
+          <a href="#request" class="btn btn--primary btn--full">Choose Platinum</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Value Proposition Section -->
-  <section class="value-prop" id="about">
+  <!-- Documentation Guide -->
+  <section class="guide" id="guide">
     <div class="container">
-      <div class="value-prop__inner">
-        <div class="value-prop__content animate-on-scroll">
-          <p class="label value-prop__label">About Expatly360</p>
-          <h2 class="display-lg value-prop__title">Your Seamless Start in Spain</h2>
-          <p class="value-prop__description">
-            Our mission is to empower you with expert guidance and comprehensive services, making your relocation journey as smooth and stress-free as possible. Based in Málaga, we understand both the challenges and joys of making Spain your new home.
-          </p>
-          <a href="#contact" class="btn btn--primary">Ask Us Anything</a>
+      <div class="guide__header animate-on-scroll">
+        <p class="label guide__label">Documentation Guide</p>
+        <h2 class="display-lg guide__title">Essential information for your move</h2>
+        <p class="guide__subtitle">Learn about the key documents and processes you'll need to navigate when settling in Spain.</p>
+      </div>
+
+      <div class="guide__grid">
+        <div class="guide-card animate-on-scroll" data-guide>
+          <div class="guide-card__header">
+            <div class="guide-card__header-content">
+              <div class="guide-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              </div>
+              <h3 class="guide-card__title">NIE Application</h3>
+            </div>
+            <svg class="guide-card__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="guide-card__content">
+            <div class="guide-card__body">
+              <p class="guide-card__text">The NIE (Número de Identidad de Extranjero) is your all-purpose identification number in Spain. It's required for virtually all official transactions including opening bank accounts, signing contracts, and property purchases. The application involves completing forms, scheduling government office appointments, and providing proof documentation.</p>
+              <a href="#request" class="guide-card__link">Request NIE assistance <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </div>
         </div>
 
-        <div class="value-prop__visual animate-on-scroll">
-          <div class="value-prop__image-stack">
-            <div class="value-prop__image value-prop__image--main">
-              <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
-                alt="Beautiful Spanish street scene with warm sunlight"
-                loading="lazy"
-              >
+        <div class="guide-card animate-on-scroll" data-guide>
+          <div class="guide-card__header">
+            <div class="guide-card__header-content">
+              <div class="guide-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              </div>
+              <h3 class="guide-card__title">NIE Blanco vs. NIE Verde</h3>
             </div>
-            <div class="value-prop__image value-prop__image--accent">
-              <img
-                src="https://images.unsplash.com/photo-1504019347908-b45f9b0b8dd5?w=600&q=80"
-                alt="Spanish cafe lifestyle"
-                loading="lazy"
-              >
+            <svg class="guide-card__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="guide-card__content">
+            <div class="guide-card__body">
+              <p class="guide-card__text"><strong>NIE Blanco:</strong> An A4 paper certificate (Form EX-15) issued to non-residents, valid for 3 months. <strong>NIE Verde:</strong> A green, credit-card-sized document for EU residents that serves as proof of residency. Non-EU citizens receive TIE cards instead of the green certificate.</p>
+              <a href="#request" class="guide-card__link">Learn which you need <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
             </div>
-            <div class="value-prop__card">
-              <div class="value-prop__card-stat">500+</div>
-              <div class="value-prop__card-label">Happy expats relocated to Spain</div>
+          </div>
+        </div>
+
+        <div class="guide-card animate-on-scroll" data-guide>
+          <div class="guide-card__header">
+            <div class="guide-card__header-content">
+              <div class="guide-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              </div>
+              <h3 class="guide-card__title">Spanish Residency</h3>
+            </div>
+            <svg class="guide-card__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="guide-card__content">
+            <div class="guide-card__body">
+              <p class="guide-card__text">Residency requirements vary based on your status—non-lucrative, work permit, student, or family of EU citizen. You'll need proof of financial means, health insurance, and a clean criminal record. Requirements differ significantly between EU and non-EU citizens.</p>
+              <a href="#request" class="guide-card__link">Start residency process <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-card animate-on-scroll" data-guide>
+          <div class="guide-card__header">
+            <div class="guide-card__header-content">
+              <div class="guide-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <h3 class="guide-card__title">The TIE Card</h3>
+            </div>
+            <svg class="guide-card__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="guide-card__content">
+            <div class="guide-card__body">
+              <p class="guide-card__text">The TIE (Tarjeta de Identidad de Extranjero) is a physical biometric identity card for non-EU legal residents. It contains your photo, fingerprint, NIE number, and permit type. You apply for it after your visa or residency is approved through the National Police.</p>
+              <a href="#request" class="guide-card__link">Get TIE card help <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-card animate-on-scroll" data-guide>
+          <div class="guide-card__header">
+            <div class="guide-card__header-content">
+              <div class="guide-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <h3 class="guide-card__title">Spanish Nationality</h3>
+            </div>
+            <svg class="guide-card__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="guide-card__content">
+            <div class="guide-card__body">
+              <p class="guide-card__text">Generally requires 10 years of continuous legal residence. Reduced periods apply: 5 years for refugees, 2 years for citizens of specific countries, 1 year for spouses of Spanish citizens. You must pass the DELE A2 language exam and CCSE cultural knowledge exam.</p>
+              <a href="#request" class="guide-card__link">Start nationality process <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-card animate-on-scroll" data-guide>
+          <div class="guide-card__header">
+            <div class="guide-card__header-content">
+              <div class="guide-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <h3 class="guide-card__title">VISA Applications</h3>
+            </div>
+            <svg class="guide-card__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="guide-card__content">
+            <div class="guide-card__body">
+              <p class="guide-card__text">Requirements vary by nationality and purpose—student, work, non-lucrative, and more. You'll need legalized documents, criminal records, and medical certificates. The process demands meticulous preparation and correct consulate submission.</p>
+              <a href="#request" class="guide-card__link">Get VISA assistance <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
             </div>
           </div>
         </div>
@@ -1754,124 +2069,102 @@
     </div>
   </section>
 
-  <!-- Lifestyle Grid -->
-  <section class="lifestyle">
-    <div class="lifestyle__grid">
-      <div class="lifestyle__item lifestyle__item--featured">
-        <img
-          src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=1200&q=80"
-          alt="Spanish coastal town aerial view"
-          loading="lazy"
-        >
-        <div class="lifestyle__overlay">
-          <div class="lifestyle__caption">
-            <h3>Coastal Living</h3>
-            <p>Discover Mediterranean paradise</p>
-          </div>
-        </div>
-      </div>
-      <div class="lifestyle__item">
-        <img
-          src="https://images.unsplash.com/photo-1515443961218-a51367888e4b?w=600&q=80"
-          alt="Spanish tapas and cuisine"
-          loading="lazy"
-        >
-        <div class="lifestyle__overlay">
-          <div class="lifestyle__caption">
-            <h3>Culinary Delights</h3>
-            <p>World-class gastronomy</p>
-          </div>
-        </div>
-      </div>
-      <div class="lifestyle__item">
-        <img
-          src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&q=80"
-          alt="Historic Spanish architecture"
-          loading="lazy"
-        >
-        <div class="lifestyle__overlay">
-          <div class="lifestyle__caption">
-            <h3>Rich History</h3>
-            <p>Centuries of culture</p>
-          </div>
-        </div>
-      </div>
-      <div class="lifestyle__item">
-        <img
-          src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80"
-          alt="Outdoor activities in Spain"
-          loading="lazy"
-        >
-        <div class="lifestyle__overlay">
-          <div class="lifestyle__caption">
-            <h3>Active Lifestyle</h3>
-            <p>Year-round adventures</p>
-          </div>
-        </div>
-      </div>
-      <div class="lifestyle__item">
-        <img
-          src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&q=80"
-          alt="Spanish beach sunset"
-          loading="lazy"
-        >
-        <div class="lifestyle__overlay">
-          <div class="lifestyle__caption">
-            <h3>Golden Sunsets</h3>
-            <p>300+ days of sunshine</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Cards Section -->
-  <section class="services">
+  <!-- Service Request Form -->
+  <section class="request" id="request">
     <div class="container">
-      <div class="services__header animate-on-scroll">
-        <p class="label services__label">Get Started</p>
-        <h2 class="display-lg services__title">How can we help you today?</h2>
-      </div>
-
-      <div class="services__grid">
-        <div class="service-card animate-on-scroll">
-          <img
-            src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&q=80"
-            alt="Person working on laptop"
-            class="service-card__image"
-            loading="lazy"
-          >
-          <div class="service-card__content">
-            <h3 class="service-card__title">Your Profile</h3>
-            <p class="service-card__description">Access your personalized dashboard, track your relocation progress, and manage all your documents in one place.</p>
-            <a href="/profile" class="service-card__link">
-              Go to Profile
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
+      <div class="request__inner">
+        <div class="request__content animate-on-scroll">
+          <p class="label request__label">Request a Service</p>
+          <h2 class="display-lg request__title">Let us help you get started</h2>
+          <p class="request__description">
+            Tell us what you need and we'll get back to you with a personalized plan. We offer a wide range of services designed to make your life in Spain easier.
+          </p>
+          <ul class="request__benefits">
+            <li class="request__benefit">
+              <svg class="request__benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span class="request__benefit-text">Free initial consultation to understand your needs</span>
+            </li>
+            <li class="request__benefit">
+              <svg class="request__benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span class="request__benefit-text">Personalized service recommendations</span>
+            </li>
+            <li class="request__benefit">
+              <svg class="request__benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span class="request__benefit-text">Response within 24 business hours</span>
+            </li>
+            <li class="request__benefit">
+              <svg class="request__benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span class="request__benefit-text">No obligation to proceed</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="service-card animate-on-scroll">
-          <img
-            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80"
-            alt="Customer support and help"
-            class="service-card__image"
-            loading="lazy"
-          >
-          <div class="service-card__content">
-            <h3 class="service-card__title">Support Center</h3>
-            <p class="service-card__description">Have questions? Our expert team is here to help. Get answers to your relocation questions quickly.</p>
-            <a href="/support" class="service-card__link">
-              Get Support
+        <div class="request__form-wrapper animate-on-scroll">
+          <h3 class="request__form-title">Tell us about your needs</h3>
+          <form>
+            <div class="request__form-row">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name *</label>
+                <input type="text" id="firstName" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name *</label>
+                <input type="text" id="lastName" class="form-input" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input type="email" id="email" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input type="tel" id="phone" class="form-input" placeholder="+34 ...">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="service">Service Needed *</label>
+              <select id="service" class="form-select" required>
+                <option value="">Select a service...</option>
+                <option value="nie">NIE Application</option>
+                <option value="visa">VISA Application</option>
+                <option value="residency">Spanish Residency</option>
+                <option value="tie">TIE Card</option>
+                <option value="nationality">Spanish Nationality</option>
+                <option value="padron">Padrón Registration</option>
+                <option value="bank">Bank Account Opening</option>
+                <option value="insurance">Insurance Setup</option>
+                <option value="utilities">Utilities Setup</option>
+                <option value="vehicle">Vehicle Registration</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="plan">Interested Plan</label>
+              <select id="plan" class="form-select">
+                <option value="">Select a plan (optional)...</option>
+                <option value="free">Free - Pay as you go</option>
+                <option value="gold">Gold - €65/month</option>
+                <option value="platinum">Platinum - €170/month</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Tell us more about your situation</label>
+              <textarea id="message" class="form-textarea" placeholder="When are you planning to move? What's your nationality? Any specific concerns?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg btn--full">
+              Submit Request
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </a>
-          </div>
+            </button>
+            <p class="form-hint" style="text-align: center; margin-top: var(--space-md);">We'll respond within 24 business hours</p>
+          </form>
         </div>
       </div>
     </div>
@@ -1891,9 +2184,9 @@
         </div>
         <div class="cta__content">
           <h2 class="display-lg cta__title">Ready to Start Your Spanish Adventure?</h2>
-          <p class="cta__subtitle">Ask us anything. We'll take care of it.</p>
-          <a href="/services/request" class="btn btn--white">
-            Get Started Today
+          <p class="cta__subtitle">Join 500+ expats who made their move seamless with Expatly360.</p>
+          <a href="#pricing" class="btn btn--white">
+            View Plans
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -1921,10 +2214,10 @@
         <div class="footer__section">
           <h4>Quick Links</h4>
           <ul class="footer__links">
-            <li><a href="/profile" class="footer__link">Profile</a></li>
-            <li><a href="/support" class="footer__link">Support</a></li>
-            <li><a href="/services/request" class="footer__link">Request Service</a></li>
-            <li><a href="/about" class="footer__link">About Us</a></li>
+            <li><a href="#services" class="footer__link">Services</a></li>
+            <li><a href="#pricing" class="footer__link">Pricing</a></li>
+            <li><a href="#guide" class="footer__link">Documentation Guide</a></li>
+            <li><a href="#request" class="footer__link">Request Service</a></li>
           </ul>
         </div>
 
@@ -1989,18 +2282,14 @@
     const mobileClose = document.getElementById('mobileClose');
     const mobileLinks = document.querySelectorAll('.mobile-menu__link');
 
-    // Scroll behavior for navigation
     window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-
-      if (currentScroll > 50) {
+      if (window.pageYOffset > 50) {
         nav.classList.add('nav--scrolled');
       } else {
         nav.classList.remove('nav--scrolled');
       }
     });
 
-    // Mobile menu toggle
     mobileToggle.addEventListener('click', () => {
       mobileMenu.classList.add('mobile-menu--open');
       document.body.style.overflow = 'hidden';
@@ -2022,12 +2311,6 @@
     // SCROLL ANIMATIONS
     // ═══════════════════════════════════════════════════════════════
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2035,7 +2318,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
       observer.observe(el);
@@ -2053,12 +2336,44 @@
           const headerOffset = 100;
           const elementPosition = target.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
+      });
+    });
+
+    // ═══════════════════════════════════════════════════════════════
+    // PRICING TOGGLE
+    // ═══════════════════════════════════════════════════════════════
+
+    const billingToggle = document.getElementById('billingToggle');
+    const monthlyLabel = document.getElementById('monthlyLabel');
+    const yearlyLabel = document.getElementById('yearlyLabel');
+    let isYearly = false;
+
+    billingToggle.addEventListener('click', () => {
+      isYearly = !isYearly;
+      billingToggle.classList.toggle('pricing__toggle-switch--yearly', isYearly);
+      monthlyLabel.classList.toggle('pricing__toggle-label--active', !isYearly);
+      yearlyLabel.classList.toggle('pricing__toggle-label--active', isYearly);
+
+      // Update prices
+      document.querySelectorAll('.pricing-card__amount[data-monthly]').forEach(el => {
+        el.textContent = '€' + (isYearly ? el.dataset.yearly : el.dataset.monthly);
+      });
+    });
+
+    // ═══════════════════════════════════════════════════════════════
+    // GUIDE ACCORDION
+    // ═══════════════════════════════════════════════════════════════
+
+    document.querySelectorAll('[data-guide]').forEach(card => {
+      const header = card.querySelector('.guide-card__header');
+      header.addEventListener('click', () => {
+        const isOpen = card.classList.contains('guide-card--open');
+        // Close all others
+        document.querySelectorAll('[data-guide]').forEach(c => c.classList.remove('guide-card--open'));
+        // Toggle current
+        if (!isOpen) card.classList.add('guide-card--open');
       });
     });
   </script>
